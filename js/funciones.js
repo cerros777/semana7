@@ -18,8 +18,13 @@ const crudLibro = document.querySelector('#crudLibro')
 const crudPersona = document.querySelector('#crudPersona')
 const crudPrestamo = document.querySelector('#crudPrestamo')
 
+const cbPersona = document.querySelector("#cbPersona");
+
+const btnConfirmar = document.querySelector("#btnConfirmar");
+
 let libro;
 let nuevo = true;
+let libroPrestar;
 
 menuLibros.addEventListener('click', (e) => {
     crudLibro.classList = "";
@@ -98,7 +103,7 @@ function editar(id){
 
     libro = Libro.buscar(id);
 
-    txtTitulo.value = libro.id;
+    txtTitulo.value = libro.titulo;
     txtAutor.value = libro.autor;
     txtCategoria.value = libro.categoria;
     txtAñoPublicacion.value = libro.añoPublicacion;
@@ -121,10 +126,34 @@ function actualizarTablaLibro(){
     for(let i = 0; i < Libro.libros.length; i++){
         let editar = `<button class='btn btn-secondary' onclick="editar(${Libro.libros[i].id})" data-bs-toggle="modal" data-bs-target="#modalLibro">Editar</button>`;
         let eliminar = `<button class='btn btn-danger' onclick="eliminar(${Libro.libros[i].id})">Eliminar</button>`;
-        tablaLibro += `<tr><td>${editar} ${eliminar}</td> <td>${Libro.libros[i].id}</td> <td>${Libro.libros[i].titulo}</td> <td>${Libro.libros[i].autor}</td> <td>${Libro.libros[i].categoria}</td> <td>${Libro.libros[i].añoPublicacion}</td> <td>${Libro.libros[i].ISBN}</td> <td>${Libro.libros[i].cantidad}</td> <td>${Libro.libros[i].prestado}</td><td>${Libro.libros[i].disponibles}</td></tr>`
+        let prestar = `<button class='btn btn-success' onclick="prestar(${Libro.libros[i].id})" data-bs-toggle="modal" data-bs-target="#modalPrestar">Prestar</button>`
+        tablaLibro += `<tr><td>${editar} ${eliminar} ${prestar} </td> <td>${Libro.libros[i].id}</td> <td>${Libro.libros[i].titulo}</td> <td>${Libro.libros[i].autor}</td> <td>${Libro.libros[i].categoria}</td> <td>${Libro.libros[i].añoPublicacion}</td> <td>${Libro.libros[i].ISBN}</td> <td>${Libro.libros[i].cantidad}</td> <td>${Libro.libros[i].prestado}</td><td>${Libro.libros[i].disponibles}</td></tr>`
     }
 
     filasLibros.innerHTML = tablaLibro;
 }
+
+function prestar(id){
+    libroPrestar = Libro.buscar(id);
+    let elementosSelect = "";
+
+    for(let i = 0; i < Persona.personas.length; i++){
+        elementosSelect += `<option value='${Persona.personas[i].dui} '>${Persona.personas[i].nombre} ${Persona.personas[i].apellido} </option>`
+    }
+    cbPersona.innerHTML = elementosSelect
+}
+
+btnConfirmar.addEventListener('click', (e) => {
+    let persona = Persona.buscar(cbPersona.value);
+
+    let prestamo = new Prestamo(libroPrestar, persona);
+
+    Prestamo.agregar(prestamo);
+
+    actualizarTablaLibro();
+    actualizarTablaPrestamo();
+
+    $("#modalPrestar").modal('hide');
+})
 
 actualizarTablaLibro();

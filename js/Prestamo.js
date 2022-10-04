@@ -3,6 +3,8 @@ class Prestamo{
     Persona
     fechaPrestamo
     fechaDevolucion
+
+    static prestamos = []
     
     constructor(Libro, Persona){
         this.Libro = Libro;
@@ -18,6 +20,11 @@ class Prestamo{
             return "prestado";
         else
             return "devuelto";
+    }
+
+    static agregar (prestamo){
+        Prestamo.prestamos.push(prestamo);
+        return true
     }
 
     devolver(){

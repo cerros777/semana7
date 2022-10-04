@@ -11,6 +11,7 @@ const modalPersona = document.querySelector("#modalPersona");
 const btnGuardarPersona = document.querySelector("#btnGuardarPersona");
 
 const filasPersonas = document.querySelector("#filasPersonas");
+const btnNuevaPersona = document.querySelector("#btnNuevaPersona")
 
 let persona;
 let nuevaPersona = true;
@@ -19,10 +20,14 @@ modalPersona.addEventListener('hidden.bs.modal', (e) => {
     vaciarPersona();
 })
 
-btnGuardarPersona.addEventListener("click", (e) => {
+btnNuevaPersona.addEventListener('click', (e) =>{
+    txtDui.disabled = false;
+})
+
+btnGuardarPersona.addEventListener('click', (e) => {
     if(validarPersona()){
         if(nuevaPersona == true){
-            persona = new Persona(txtDui.value, txtNombre.value, txtApellido.value, txtDireccion.value, txtTelefono.value, txtCorreo.value)
+            persona = new Persona(txtDui.value, txtNombre.value, txtApellido.value, txtDireccion.value, txtTelefono.value, txtCorreo.value);
             
             let resultado = Persona.agregar(persona);
 
@@ -42,7 +47,7 @@ btnGuardarPersona.addEventListener("click", (e) => {
             persona.correo = txtCorreo.value;
             actualizarTablaPersona();
             vaciarPersona();
-            $("#modalPersona").modal('hide')
+            $("#modalPersona").modal('hide');
         }
     }
 })
@@ -65,9 +70,9 @@ function editarPersona(dui){
 function eliminarPersona(dui){
     let resultado = Persona.eliminar(dui);
 
-    console.log(Persona.personas);
-    if (resultado == true)
+    if (resultado){
         actualizarTablaPersona();
+    }
 }
 
 function actualizarTablaPersona(){
