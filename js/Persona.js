@@ -18,7 +18,7 @@ class Persona{
     }
 
     get nombreCompleto(){
-        return this.nombre + this.apellido;
+        return this.nombre + ' ' + this.apellido;
     }
 
     static agregar(persona){

@@ -8,6 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <style>
+        #crudPrestamo, #crudPersona, #crudLibro{
+            position: absolute;
+        }
+    </style>
 <body>
 <nav class="navbar navbar-expand-sm bg-light">
     <div class="container-fluid">
@@ -251,6 +256,7 @@
                     <th>Persona</th>
                     <th>Fecha Prestamo</th>
                     <th>Fecha Devolucion</th>
+                    <th>Estado</th>
                 </tr>
             </thead>
             <tbody id="filasPrestamos">
@@ -270,37 +276,7 @@
 <script src="js/Libro.js"></script>
 <script src="js/Persona.js"></script>
 <script src="js/Prestamo.js"></script>
-<script>
-    /* const libro1 = new Libro("Programacion en C#", "Ceballos", "Desarrollo de software", 2010, "101011", 10)
-    const libro2 = new Libro("Como programar en Java", "Deitel", "Desarrollo de S", 2005, "200200", 20)
-    const libro3 = new Libro("Javascript", "Deitel", "Desarrollo de S", 2005, "200200", 15)
-    
-    Libro.agregar(libro1);
-    Libro.agregar(libro2);
-    Libro.agregar(libro3);
-    console.log(Libro.libros)
-    */
-    /*   
-    Libro.libros.push(libro1)
-    Libro.libros.push(libro2)
-
-    const lista = document.querySelector('#lista');
-    let elementos = "";
-    for(let i = 0; i < Libro.libros.length; i++){
-        elementos = elementos + `<li>${Libro.libros[i].titulo}</li>`
-    }
-    lista.innerHTML = elementos;
-    console.log(Libro.libro)
-
-
-    const persona1 = new Persona ("1020202", "Daniel", "Cerros", "sSS", "222222", "corre@cor.com")
-    console.log(persona1);
-
-    const prestamo1 = new Prestamo(libro2, persona1);
-    console.log(prestamo1);
-*/
-
-</script>
 <script src="js/funciones.js"></script>
 <script src="js/funcionesPersonas.js"></script>
 <script src="js/funcionesPrestamos.js"></script>
+

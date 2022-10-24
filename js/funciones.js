@@ -138,7 +138,7 @@ function prestar(id){
     let elementosSelect = "";
 
     for(let i = 0; i < Persona.personas.length; i++){
-        elementosSelect += `<option value='${Persona.personas[i].dui} '>${Persona.personas[i].nombre} ${Persona.personas[i].apellido} </option>`
+        elementosSelect += `<option value='${Persona.personas[i].dui}'>${Persona.personas[i].nombre} ${Persona.personas[i].apellido} </option>`
     }
     cbPersona.innerHTML = elementosSelect
 }
